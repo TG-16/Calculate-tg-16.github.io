@@ -1,0 +1,81 @@
+console.log('Hello World!');
+
+let subject={}, crh={};
+let totalmark = 0, totalcr = 0, sgpa,m,n;
+let oneSgpa = document.getElementById("oneSgpa");
+let twoSgpa = document.getElementById("twoSgpa");
+function sgpaCalculation() 
+{
+  for (i = 1; i <= 7; i++) 
+  {
+   subject[i] = document.getElementById("subject" + i);
+   crh[i] = document.getElementById("cr" + i);
+  }
+  
+  for (var i = 1; i <=7 ; i++) 
+  {
+    m = marks(subject[i].value);
+    n = (m * crh[i].value);
+    totalmark = totalmark + n;
+    totalcr = totalcr + (crh[i].value *10 /10);
+  }
+  sgpa = totalmark / totalcr;
+  sgpa = sgpa.toFixed(2);
+  let result = document.getElementById("result");
+  result.value = sgpa;
+ //oneSgpa.innerHTML= result.value;
+  result.style.backgroundColor = "#187637";
+  result.style.color = 'black';
+  oneSgpa.innerHTML = result.value;
+}
+
+function marks(grade) 
+{
+  if (grade == 'A+')
+  return 4;
+  else if(grade == 'A')
+  return 4;
+  else if(grade == 'A-')
+  return 3.75;
+  else if(grade == 'B+')
+  return 3.5;
+  else if(grade == 'B')
+  return 3;
+  else if(grade == 'B-')
+  return 2.75;
+  else if(grade == 'C+')
+  return 2.5;
+  else if(grade == 'C')
+  return 2;
+  else if(grade == 'D')
+  return 1;
+  else if(grade == 'F')
+  return 0;
+}
+
+let cgpa = document.getElementById("cgpa");
+let average;
+function cgpaCalculation()
+{
+  average = ((oneSgpa.innerHTML*1/1 + twoSgpa.innerHTML*1/1)) /2;
+  average = average.toFixed(2);
+  cgpa.innerHTML = average;
+}
+
+let scont = document.getElementById("sgpa");
+let ccont = document.getElementById("tab");
+let details = document.getElementById("details");
+
+function display() 
+{
+  details.style.visibility = "visible"; 
+  ccont.style.visibility = "hidden";
+  scont.style.visibility = "hidden";
+}
+
+function hide()
+{
+  details.style.visibility = "hidden ";
+  ccont.style.visibility = "visible";
+  scont.style.visibility = "visible"
+}
